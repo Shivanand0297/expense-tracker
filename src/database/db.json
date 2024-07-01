@@ -1,0 +1,23 @@
+{
+  "expenses": [
+    {
+      "category": "shoping",
+      "amount": 300,
+      "userId": 2,
+      "item": "football",
+      "date": "23-12-2024"
+    }
+  ],
+  "income": [
+    {
+      "amount": 40000,
+      "date": "12-12-2024",
+      "source": "salary",
+      "mode": "online",
+      "user": 2
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
