@@ -1,6 +1,7 @@
 
-
-export enum ITransactionType {
-  INCOME = "INCOME",
-  EXPENSE = "EXPENSE",
+export enum TransactionCategories {
+  SALARY = "SALARY",
+  SHOPING = "SHOPING",
+  FOOD = "FOOD",
+  OTHER = "OTHER",
 }

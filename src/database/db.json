@@ -1,23 +1,20 @@
 {
   "expenses": [
     {
-      "category": "shoping",
+      "id": "bb66",
       "amount": 300,
-      "userId": 2,
-      "item": "football",
-      "date": "23-12-2024"
+      "category": "shoping",
+      "date": "23-12-2024",
+      "mode": "offline"
     }
   ],
   "income": [
     {
+      "id": "3f65",
       "amount": 40000,
+      "category": "salary",
       "date": "12-12-2024",
-      "source": "salary",
-      "mode": "online",
-      "user": 2
+      "mode": "online"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

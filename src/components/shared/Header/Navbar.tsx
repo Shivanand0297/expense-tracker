@@ -5,10 +5,10 @@ import { LayoutDashboard } from "lucide-react";
 
 const Navbar = () => {
   return (
-    <div className="sticky top-0 z-50 bg-white shadow">
+    <div className="sticky top-0 z-50 bg-background dark:bg-foreground shadow">
       <div className="container mx-auto max-w-7xl p-2 sm:p-4 md:px-10 lg:px-12">
         <div className="flex items-center justify-between py-2">
-          <nav className="flex gap-4">
+          <nav className="flex items-center gap-4">
             <NavLink to="/">
               <LayoutDashboard size={20} className="text-primary" />
             </NavLink>
@@ -17,6 +17,7 @@ const Navbar = () => {
               <NavbarListItem to="/transactions">Transactions</NavbarListItem>
             </NavbarList>
           </nav>
+          <div>theme</div>
         </div>
       </div>
     </div>

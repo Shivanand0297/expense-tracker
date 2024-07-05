@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import moment from "moment";
 import { useForm } from "react-hook-form";
 
 // components
@@ -6,25 +7,42 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 // schemas
-import { ITransactionFormSchema, transactionFormSchema } from "@/schemas/transactionFormSchema";
+import api from "@/lib/axiosInstance";
+import { ITransactionFormSchema, transactionCategories, transactionFormSchema, transactionMode } from "@/schemas/transactionFormSchema";
+import { AxiosError } from "axios";
+import { toast } from "sonner";
 
 const TransactionForm = () => {
-  // 1. Define your form.
   const form = useForm<ITransactionFormSchema>({
     resolver: zodResolver(transactionFormSchema),
     defaultValues: {
       amount: 0,
-      category: null,
-      transactionDate: new Date(),
-      type: "INCOME",
+      category: "SALARY",
+      mode: "ONLINE",
+      date: moment(new Date()).format("YYYY-MM-DD"),
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: ITransactionFormSchema) {
-    console.log(values);
+  async function onSubmit(values: ITransactionFormSchema) {
+    try {
+      if (values.category !== "SALARY") {
+        const expenseResponse = await api.post("/expenses", values);
+        console.log("expenseResponse", expenseResponse);
+      } else {
+        const incomeResponse = await api.post("/income", values);
+        console.log("incomeResponse", incomeResponse);
+      }
+    } catch (error) {
+      console.log("Failed to make transaction :", error);
+      if (error instanceof AxiosError || error instanceof Error) {
+        toast.error(error.message, {
+          description: "Transaction failed !",
+        });
+      }
+    }
   }
 
   return (
@@ -35,22 +53,96 @@ const TransactionForm = () => {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-            <FormField
-              control={form.control}
-              name="amount"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Amount</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Amount" type="number" {...field} />
-                  </FormControl>
-                  <FormDescription>This is your income or expense.</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit">Submit</Button>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <FormField
+                control={form.control}
+                name="amount"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Amount</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Amount"
+                        type="number"
+                        {...field}
+                        {...form.register("amount", { valueAsNumber: true })}
+                      />
+                    </FormControl>
+                    <FormDescription>This is your income or expense.</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="category"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Category</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select Category" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {transactionCategories.map((category) => (
+                          <SelectItem value={category} key={category}>
+                            {category}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="date"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Date</FormLabel>
+                    <FormControl>
+                      <Input type="date" {...field} disabled />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="mode"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Transaction Mode</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select transaction Mode" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {transactionMode.map((mode) => (
+                          <SelectItem value={mode} key={mode}>
+                            {mode}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <Button type="submit" className="w-full">
+              Submit
+            </Button>
           </form>
         </Form>
       </CardContent>
