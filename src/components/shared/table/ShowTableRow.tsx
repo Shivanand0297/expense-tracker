@@ -7,7 +7,7 @@ type ShowTableProps<TData> = {
 
 export default function ShowTableRow<TData>({ table }: ShowTableProps<TData>) {
 
-  const selectOptions = [50, 75, 100, 150]
+  const selectOptions = [10, 20, 30, 40]
 
   return (
     <div className="flex items-center gap-2">

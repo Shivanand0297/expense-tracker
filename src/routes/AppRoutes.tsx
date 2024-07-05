@@ -5,10 +5,10 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import AppLayout from "@/components/layouts/AppLayout";
 import Loader from "@/components/shared/Loader";
 import RouteError from "@/components/shared/RouteError";
-const AddTransaction = lazy(() => import("@/pages/AddTransaction"));
-const Transactions = lazy(() => import("@/pages/Transactions"));
+const AddTransaction = lazy(() => import("@/pages/add-transaction/AddTransaction"));
+const TransactionList = lazy(() => import("@/pages/transaction-lists/TransactionList"));
 const NotFound = lazy(() => import("@/components/shared/NotFound"));
-const Home = lazy(() => import("@/pages/Home"));
+const Home = lazy(() => import("@/pages/home/Home"));
 
 export default function AppRoutes() {
   const router = createBrowserRouter(
@@ -16,7 +16,7 @@ export default function AppRoutes() {
       <Route errorElement={<RouteError />} element={<AppLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/transaction-init" element={<AddTransaction />} />
-        <Route path="/transactions" element={<Transactions />} />
+        <Route path="/transactions" element={<TransactionList />} />
 
         <Route path="*" element={<NotFound />} />
       </Route>

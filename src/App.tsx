@@ -1,14 +1,15 @@
-import AppRoutes from "@/routes/AppRoutes";
 import { Toaster } from "sonner";
+
+import AppRoutes from "@/routes/AppRoutes";
 import Loader from "@/components/shared/Loader";
-import { useState } from "react";
+import { useGlobalLoader } from "./context/globalLoader";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading } = useGlobalLoader();
 
   return (
-    <main>
-      <Toaster position="bottom-right" theme="light" expand={false} richColors={true} closeButton />
+    <main className="min-h-screen dark:bg-secondary-foreground dark:text-secondary" >
+      <Toaster position="top-right" theme="light" expand={false} richColors={true} closeButton />
       <Loader loading={isLoading} />
       <AppRoutes />
     </main>

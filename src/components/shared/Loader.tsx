@@ -8,7 +8,7 @@ const Loader = ({ loading }: Props) => {
     <>
       {loading ? (
         <div className="flex items-center justify-center z-[99999]  h-screen fixed bottom-0 left-0 top-0 right-0 bg-white">
-          <SyncLoader className="d-inline" color="#F3AE48" loading={loading} speedMultiplier={1} size={20} />
+          <SyncLoader className="d-inline" color="hsl(var(--primary))" loading={loading} speedMultiplier={1} size={20} />
         </div>
       ) : null}
     </>

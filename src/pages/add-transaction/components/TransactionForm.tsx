@@ -11,11 +11,20 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 // schemas
 import api from "@/lib/axiosInstance";
-import { ITransactionFormSchema, transactionCategories, transactionFormSchema, transactionMode } from "@/schemas/transactionFormSchema";
+import {
+  ITransactionFormSchema,
+  transactionCategories,
+  transactionFormSchema,
+  transactionMode,
+} from "@/schemas/transactionFormSchema";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
+import { useGlobalLoader } from "@/context/globalLoader";
+import { wait } from "@/lib/utils";
 
 const TransactionForm = () => {
+  const { setIsLoading } = useGlobalLoader();
+
   const form = useForm<ITransactionFormSchema>({
     resolver: zodResolver(transactionFormSchema),
     defaultValues: {
@@ -28,13 +37,19 @@ const TransactionForm = () => {
 
   async function onSubmit(values: ITransactionFormSchema) {
     try {
+      setIsLoading(true);
+      await wait();
       if (values.category !== "SALARY") {
-        const expenseResponse = await api.post("/expenses", values);
-        console.log("expenseResponse", expenseResponse);
+        // artificially delaying for api call loader
+        await api.post("/expenses", values);
       } else {
-        const incomeResponse = await api.post("/income", values);
-        console.log("incomeResponse", incomeResponse);
+        await api.post("/income", values);
       }
+
+      toast.success("Transaction Successfull");
+
+      // reseting form
+      form.reset()
     } catch (error) {
       console.log("Failed to make transaction :", error);
       if (error instanceof AxiosError || error instanceof Error) {
@@ -42,6 +57,8 @@ const TransactionForm = () => {
           description: "Transaction failed !",
         });
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -53,7 +70,7 @@ const TransactionForm = () => {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <FormField
                 control={form.control}
@@ -62,12 +79,7 @@ const TransactionForm = () => {
                   <FormItem>
                     <FormLabel>Amount</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Amount"
-                        type="number"
-                        {...field}
-                        {...form.register("amount", { valueAsNumber: true })}
-                      />
+                      <Input placeholder="Amount" type="number" {...field} />
                     </FormControl>
                     <FormDescription>This is your income or expense.</FormDescription>
                     <FormMessage />

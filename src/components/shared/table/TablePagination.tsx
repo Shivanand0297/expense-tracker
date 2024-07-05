@@ -3,7 +3,7 @@ import { ChevronsLeft, ChevronsRight } from "lucide-react";
 
 // components
 import { Button } from "@/components/ui/button";
-import ShowTableRow from "@/components/shared/ShowTableRow";
+import ShowTableRow from "@/components/shared/table/ShowTableRow";
 
 
 type TablePaginationProps<TData> = {
