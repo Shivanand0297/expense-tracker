@@ -18,7 +18,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 // libs and types
-import PageError from "@/components/shared/PageError";
 import useFetch from "@/hooks/useFetch";
 import { setTablePageCount } from "@/lib/utils";
 import { ITransactionListItem } from "@/types/transactionInterface";
@@ -37,7 +36,7 @@ const TransactionTable = ({ url, expenseType, pagination, setPagination }: Expen
   const [transactionList, setTransactionList] = useState<ITransactionListItem[]>([]);
   const [transactionListPageCount, setTransactionListPageCount] = useState(0);
 
-  const { isPending, isError, data, error } = useFetch<{ data: ITransactionListItem[], items: number }>(url);
+  const { isPending, isError, data } = useFetch<{ data: ITransactionListItem[], items: number }>(url);
 
   useEffect(() => {
 
@@ -116,10 +115,6 @@ const TransactionTable = ({ url, expenseType, pagination, setPagination }: Expen
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
   });
-
-  if(error) {
-    return <PageError error={error}/>
-  }
 
   return (
     <Card>
