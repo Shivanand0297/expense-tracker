@@ -5,28 +5,28 @@
       "amount": 56562,
       "category": "FOOD",
       "mode": "ONLINE",
-      "date": "2024-07-05"
+      "date": "2024-07-01"
     },
     {
       "id": "28c3",
       "amount": 56565,
       "category": "FOOD",
       "mode": "ONLINE",
-      "date": "2024-07-05"
+      "date": "2024-07-02"
     },
     {
       "id": "e222",
       "amount": 1215,
       "category": "TRAVEL",
       "mode": "OFFLINE",
-      "date": "2024-07-05"
+      "date": "2024-07-03"
     },
     {
       "id": "e215",
       "amount": 9656,
       "category": "TRAVEL",
       "mode": "ONLINE",
-      "date": "2024-07-06"
+      "date": "2024-07-04"
     },
     {
       "id": "ab43",
@@ -40,28 +40,28 @@
       "amount": 2330,
       "category": "OTHER",
       "mode": "ONLINE",
-      "date": "2024-07-06"
+      "date": "2024-07-05"
     },
     {
       "id": "6dcf",
       "amount": 1233,
       "category": "SHOPING",
       "mode": "OFFLINE",
-      "date": "2024-07-06"
+      "date": "2024-07-07"
     },
     {
       "id": "0662",
       "amount": 1222,
       "category": "OTHER",
       "mode": "ONLINE",
-      "date": "2024-07-06"
+      "date": "2024-07-09"
     },
     {
       "id": "af02",
       "amount": 3232,
       "category": "OTHER",
       "mode": "OFFLINE",
-      "date": "2024-07-06"
+      "date": "2024-07-10"
     },
     {
       "id": "e7a1",
@@ -75,14 +75,14 @@
       "amount": 20000,
       "category": "TRAVEL",
       "mode": "ONLINE",
-      "date": "2024-07-07"
+      "date": "2024-07-04"
     },
     {
       "id": "893e",
       "amount": 250,
       "category": "SHOPING",
       "mode": "OFFLINE",
-      "date": "2024-07-07"
+      "date": "2024-07-06"
     }
   ],
   "income": [
@@ -91,21 +91,21 @@
       "amount": 1256,
       "category": "SALARY",
       "mode": "ONLINE",
-      "date": "2024-07-05"
+      "date": "2024-07-01"
     },
     {
       "id": "3096",
       "amount": 12565,
       "category": "SALARY",
       "mode": "ONLINE",
-      "date": "2024-07-05"
+      "date": "2024-07-03"
     },
     {
       "id": "ccd7",
       "amount": 10000000,
       "category": "SALARY",
       "mode": "ONLINE",
-      "date": "2024-07-05"
+      "date": "2024-07-07"
     },
     {
       "id": "0627",
@@ -126,42 +126,42 @@
       "amount": 5000,
       "category": "SALARY",
       "mode": "ONLINE",
-      "date": "2024-07-06"
+      "date": "2024-07-09"
     },
     {
       "id": "380d",
       "amount": 5656565,
       "category": "SALARY",
       "mode": "ONLINE",
-      "date": "2024-07-06"
+      "date": "2024-07-10"
     },
     {
       "id": "deef",
       "amount": 4,
       "category": "SALARY",
       "mode": "ONLINE",
-      "date": "2024-07-06"
+      "date": "2024-07-13"
     },
     {
       "id": "66f4",
       "amount": 125,
       "category": "SALARY",
       "mode": "ONLINE",
-      "date": "2024-07-06"
+      "date": "2024-07-20"
     },
     {
       "id": "02ea",
       "amount": 565,
       "category": "SALARY",
       "mode": "ONLINE",
-      "date": "2024-07-06"
+      "date": "2024-07-19"
     },
     {
       "id": "4cb7",
       "amount": 500,
       "category": "SALARY",
       "mode": "OFFLINE",
-      "date": "2024-07-06"
+      "date": "2024-07-13"
     }
   ]
 }
