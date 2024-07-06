@@ -12,3 +12,7 @@ export const wait = (delay: number = 1000) => {
 export const setTablePageCount = (count: number, pageSize: number) => {
   return Math.ceil(count / pageSize);
 }
+
+export const numberToCurrency = (number: number, currency: string = "INR") => {
+  return new Intl.NumberFormat("en-IN", { style: "currency", currency: currency }).format(number);
+};

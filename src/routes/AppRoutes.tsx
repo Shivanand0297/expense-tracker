@@ -3,8 +3,6 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 
 // components
 import AppLayout from "@/components/layouts/AppLayout";
-import Loader from "@/components/shared/Loader";
-import RouteError from "@/components/shared/RouteError";
 const AddTransaction = lazy(() => import("@/pages/add-transaction/AddTransaction"));
 const TransactionList = lazy(() => import("@/pages/transaction-lists/TransactionList"));
 const NotFound = lazy(() => import("@/components/shared/NotFound"));
@@ -13,7 +11,7 @@ const Home = lazy(() => import("@/pages/home/Home"));
 export default function AppRoutes() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route errorElement={<RouteError />} element={<AppLayout />}>
+      <Route element={<AppLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/transaction-init" element={<AddTransaction />} />
         <Route path="/transactions" element={<TransactionList />} />
@@ -23,10 +21,5 @@ export default function AppRoutes() {
     )
   );
 
-  return( 
-    <RouterProvider 
-      router={router} 
-      fallbackElement={<Loader loading={true} />} 
-    />
-  );
+  return <RouterProvider router={router} />;
 }

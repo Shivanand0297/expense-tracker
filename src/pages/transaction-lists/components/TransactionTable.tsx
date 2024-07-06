@@ -1,17 +1,15 @@
-import moment from "moment";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { AxiosError, AxiosResponse } from "axios";
-import { toast } from "sonner";
-import { Link } from "react-router-dom";
-import { ArrowUpDown, PlusCircle } from "lucide-react";
 import {
   ColumnDef,
-  PaginationState,
-  SortingState,
   getCoreRowModel,
   getSortedRowModel,
+  PaginationState,
+  SortingState,
   useReactTable,
 } from "@tanstack/react-table";
+import { ArrowUpDown, PlusCircle } from "lucide-react";
+import moment from "moment";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 
 // components
 import DataTable from "@/components/shared/table/DataTable";
@@ -20,42 +18,34 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 // libs and types
+import PageError from "@/components/shared/PageError";
+import useFetch from "@/hooks/useFetch";
 import { setTablePageCount } from "@/lib/utils";
 import { ITransactionListItem } from "@/types/transactionInterface";
 
 type ExpenseListProps = {
-  expenseType: "INCOME" | "EXPENSE",
-  fetchApi: (data: PaginationState) => Promise<AxiosResponse>
-}
+  expenseType: "INCOME" | "EXPENSE";
+  url: string;
+  pagination: PaginationState;
+  setPagination: Dispatch<SetStateAction<PaginationState>>;
+};
 
-const TransactionTable = ({ fetchApi, expenseType }: ExpenseListProps) => {
-  const [pagination, setPagination] = useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 10,
-  });
+const TransactionTable = ({ url, expenseType, pagination, setPagination }: ExpenseListProps) => {
 
   const [sorting, setSorting] = useState<SortingState>([]);
 
   const [transactionList, setTransactionList] = useState<ITransactionListItem[]>([]);
   const [transactionListPageCount, setTransactionListPageCount] = useState(0);
 
-  const getTransactionListHandler = useCallback(async () => {
-    try {
-      const { data } = await fetchApi({ pageIndex: pagination.pageIndex + 1, pageSize: pagination.pageSize });
-
-      setTransactionList(data.data);
-      setTransactionListPageCount(setTablePageCount(data.items, pagination.pageSize));
-    } catch (error) {
-      console.log("Error fetching transactions: ", error);
-      if (error instanceof AxiosError || error instanceof Error) {
-        toast.error(error.message);
-      }
-    }
-  }, [fetchApi, pagination.pageIndex, pagination.pageSize]);
+  const { isPending, isError, data, error } = useFetch<{ data: ITransactionListItem[], items: number }>(url);
 
   useEffect(() => {
-    getTransactionListHandler();
-  }, [getTransactionListHandler]);
+
+    if(!isPending && !isError && data){
+      setTransactionList(data.data);
+      setTransactionListPageCount(setTablePageCount(data.items, pagination.pageSize));
+    }
+  }, [data, isError, isPending, pagination.pageSize])
 
   const columns = useMemo<ColumnDef<ITransactionListItem>[]>(
     () => [
@@ -126,6 +116,10 @@ const TransactionTable = ({ fetchApi, expenseType }: ExpenseListProps) => {
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
   });
+
+  if(error) {
+    return <PageError error={error}/>
+  }
 
   return (
     <Card>

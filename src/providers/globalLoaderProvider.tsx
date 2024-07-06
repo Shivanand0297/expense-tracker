@@ -5,13 +5,14 @@ interface IGLobalContext {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
 }
 
-const GlobalContext = createContext<IGLobalContext>({
+const initialState: IGLobalContext = {
   isLoading: false,
-  setIsLoading: () => {}
-})
+  setIsLoading: () => null,
+};
 
-const GlobalContextProvider = ({ children }: {children: ReactNode}) => {
+const GlobalContext = createContext<IGLobalContext>(initialState);
 
+const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
@@ -25,9 +26,9 @@ export default GlobalContextProvider;
 
 export const useGlobalLoader = () => {
   const globalContext = useContext(GlobalContext);
-  if(globalContext) {
+  if (globalContext) {
     return globalContext;
   } else {
-    throw new Error("GlobalContext can be used only inside global loader provider")
+    throw new Error("GlobalContext can be used only inside global loader provider");
   }
-}
+};

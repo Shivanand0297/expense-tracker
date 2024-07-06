@@ -2,42 +2,42 @@
   "expenses": [
     {
       "id": "8e7a",
-      "amount": 565623,
+      "amount": 56562,
       "category": "FOOD",
       "mode": "ONLINE",
       "date": "2024-07-05"
     },
     {
       "id": "28c3",
-      "amount": 5656,
+      "amount": 56565,
       "category": "FOOD",
       "mode": "ONLINE",
       "date": "2024-07-05"
     },
     {
       "id": "e222",
-      "amount": 121515,
-      "category": "FOOD",
+      "amount": 1215,
+      "category": "TRAVEL",
       "mode": "OFFLINE",
       "date": "2024-07-05"
     },
     {
       "id": "e215",
-      "amount": 56565,
-      "category": "FOOD",
+      "amount": 9656,
+      "category": "TRAVEL",
       "mode": "ONLINE",
       "date": "2024-07-06"
     },
     {
       "id": "ab43",
       "amount": 5652,
-      "category": "TRAVEL",
+      "category": "SHOPING",
       "mode": "OFFLINE",
       "date": "2024-07-06"
     },
     {
       "id": "c4b2",
-      "amount": 233,
+      "amount": 2330,
       "category": "OTHER",
       "mode": "ONLINE",
       "date": "2024-07-06"
@@ -59,9 +59,30 @@
     {
       "id": "af02",
       "amount": 3232,
-      "category": "TRAVEL",
+      "category": "OTHER",
       "mode": "OFFLINE",
       "date": "2024-07-06"
+    },
+    {
+      "id": "e7a1",
+      "amount": 1000,
+      "category": "TRAVEL",
+      "mode": "ONLINE",
+      "date": "2024-07-07"
+    },
+    {
+      "id": "c118",
+      "amount": 20000,
+      "category": "TRAVEL",
+      "mode": "ONLINE",
+      "date": "2024-07-07"
+    },
+    {
+      "id": "893e",
+      "amount": 250,
+      "category": "SHOPING",
+      "mode": "OFFLINE",
+      "date": "2024-07-07"
     }
   ],
   "income": [

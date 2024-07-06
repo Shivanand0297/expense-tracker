@@ -19,7 +19,7 @@ import {
 } from "@/schemas/transactionFormSchema";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
-import { useGlobalLoader } from "@/context/globalLoader";
+import { useGlobalLoader } from "@/providers/globalLoaderProvider";
 import { wait } from "@/lib/utils";
 
 const TransactionForm = () => {
@@ -38,9 +38,9 @@ const TransactionForm = () => {
   async function onSubmit(values: ITransactionFormSchema) {
     try {
       setIsLoading(true);
+      // artificially delaying for api call for loader to visible clearly
       await wait();
       if (values.category !== "SALARY") {
-        // artificially delaying for api call loader
         await api.post("/expenses", values);
       } else {
         await api.post("/income", values);

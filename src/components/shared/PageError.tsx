@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 type Props = {
-  error: Error | AxiosError
+  error: Error | AxiosError;
 }
 
 const PageError = ({ error }: Props) => {

@@ -3,6 +3,8 @@ import { Outlet } from "react-router-dom";
 import ComponentLoader from "../shared/ComponentLoader";
 import Navbar from "../shared/Header/Navbar";
 import PageWrapper from "../container/PageWrapper";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "../shared/ErrorFallback";
 
 const AppLayout = () => {
   return (
@@ -10,7 +12,14 @@ const AppLayout = () => {
       <Navbar />
       <Suspense fallback={<ComponentLoader />}>
         <PageWrapper>
-          <Outlet />
+          <ErrorBoundary
+            FallbackComponent={ErrorFallback}
+            onError={(error, info) => {
+              console.error({ error, info });
+            }}
+          >
+            <Outlet />
+          </ErrorBoundary>
         </PageWrapper>
       </Suspense>
     </Fragment>
