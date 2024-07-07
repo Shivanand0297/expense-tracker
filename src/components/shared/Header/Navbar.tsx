@@ -6,7 +6,7 @@ import { ModeToggle } from "@/components/ui/themeToggle";
 
 const Navbar = () => {
   return (
-    <div className="sticky top-0 z-50 dark:bg-background dark:text-foreground shadow">
+    <div className="sticky top-0 z-50 bg-white dark:bg-background dark:text-foreground shadow">
       <div className="container mx-auto max-w-7xl p-2 sm:p-4 md:px-10 lg:px-12">
         <div className="flex items-center justify-between py-2">
           <nav className="flex items-center gap-4">

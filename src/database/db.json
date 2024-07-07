@@ -90,6 +90,13 @@
       "category": "SHOPING",
       "mode": "OFFLINE",
       "date": "2024-07-07"
+    },
+    {
+      "id": "18a1",
+      "amount": 9000,
+      "category": "TRAVEL",
+      "mode": "ONLINE",
+      "date": "2024-07-07"
     }
   ],
   "income": [

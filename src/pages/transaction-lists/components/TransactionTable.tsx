@@ -131,7 +131,7 @@ const TransactionTable = ({ url, expenseType, pagination, setPagination }: Expen
           </Button>
         </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="overflow-x-scroll">
         <DataTable table={table} columns={columns} />
       </CardContent>
       <CardFooter className="justify-end">
