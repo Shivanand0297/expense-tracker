@@ -83,6 +83,13 @@
       "category": "SHOPING",
       "mode": "OFFLINE",
       "date": "2024-07-06"
+    },
+    {
+      "id": "78f8",
+      "amount": 5000,
+      "category": "SHOPING",
+      "mode": "OFFLINE",
+      "date": "2024-07-07"
     }
   ],
   "income": [

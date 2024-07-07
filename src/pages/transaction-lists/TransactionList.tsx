@@ -20,8 +20,7 @@ const TransactionList = () => {
         expenseType="INCOME"
         pagination={incomePagination}
         setPagination={setIncomePagination}
-        // url={`/income?_page=${incomePagination.pageIndex + 1}&_per_page=${incomePagination.pageSize}`}
-        url={`/income?date_gte=2024-07-01&date_lte=2024-07-20`}
+        url={`/income?_page=${incomePagination.pageIndex + 1}&_per_page=${incomePagination.pageSize}`}
       />
       <TransactionTable
         expenseType="EXPENSE"
