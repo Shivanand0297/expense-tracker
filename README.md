@@ -5,6 +5,8 @@
 ## How to run:
 Download and open the zip file and hit `npm install` to install all the dependencies hit `npm run dev` to start the client server and `npm run dev:server` on different terminal to run json server.
 
+## Project Introduction Video:
+[Click here to watch](https://www.youtube.com/watch?v=DP5q0VanNsY)
 
 | Steps      | with [npm](https://www.npmjs.com/) |
 | -----      | ---------------------------------- |
